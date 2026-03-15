@@ -1,0 +1,88 @@
+<div class="sliders-panel" *ngIf="!showDropDownControls">
+
+  <!-- Step 1: Year/Period -->
+  <div class="slider-row">
+    <div class="slider-step-label">
+      <span class="step-number">1</span>
+      <span class="step-text">Period</span>
+    </div>
+    <div class="slider-track">
+      <app-year-slider
+        [value]="controlsData?.selectedYearRange || null"
+        [years]="controlsOptions?.yearRanges || []"
+        [disabled]="shouldDisableYearSlider()"
+        (valueChange)="onYearSelected($event)"
+      ></app-year-slider>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="slider-divider"></div>
+
+  <!-- Step 2: Month -->
+  <div class="slider-row">
+    <div class="slider-step-label">
+      <span class="step-number">2</span>
+      <span class="step-text">Month</span>
+    </div>
+    <div class="slider-track">
+      <app-month-slider
+        [value]="controlsData?.selectedMonth || 1"
+        (valueChange)="onMonthSelected($event)"
+      ></app-month-slider>
+    </div>
+  </div>
+
+</div>
+
+<div class="row controls-row" *ngIf="showDropDownControls">
+  <mat-form-field
+    *ngIf="!hideVariableSelector"
+    subscriptSizing="dynamic"
+    appearance="outline"
+    class="dropdown-field"
+  >
+    <mat-label>Variable</mat-label>
+    <mat-select
+      [value]="controlsData?.selectedVariableType"
+      (selectionChange)="onVariableTypeChange($event)"
+    >
+      <mat-option
+        *ngFor="let variableType of controlsOptions?.variableTypes || []"
+        [value]="variableType"
+        [disabled]="
+          !controlsOptions?.availableVariableTypes?.includes(variableType)
+        "
+        [class.disabled-option]="
+          !controlsOptions?.availableVariableTypes?.includes(variableType)
+        "
+      >
+        {{ controlsOptions?.climateVariables?.[variableType]?.displayName }} ({{
+          getVariableUnit(variableType)
+        }})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field subscriptSizing="dynamic" appearance="outline" class="dropdown-field">
+    <mat-label>Resolution</mat-label>
+    <mat-select
+      [value]="controlsData?.selectedResolution"
+      (selectionChange)="onResolutionChange($event)"
+    >
+      <mat-option
+        *ngFor="let resolution of controlsOptions?.resolutions || []"
+        [value]="resolution"
+        [disabled]="
+          !controlsOptions?.availableResolutions?.includes(resolution)
+        "
+        [class.disabled-option]="
+          !controlsOptions?.availableResolutions?.includes(resolution)
+        "
+      >
+        {{ getResolutionDisplayName(resolution) }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
