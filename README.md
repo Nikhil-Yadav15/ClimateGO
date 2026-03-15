@@ -1,5 +1,15 @@
 # ClimateGO — Interactive Global Climate Visualization Platform
 
+<div align="center">
+
+## 🎬 Live Demo
+
+### [![▶ WATCH DEMO VIDEO](https://img.shields.io/badge/▶%20WATCH%20DEMO%20VIDEO-Click%20Here-FF0000?style=for-the-badge&logo=googledrive&logoColor=white&labelColor=222222)](https://drive.google.com/file/d/1HSoxViF_RDziUdfWm8Z8hTTfj4e8DTJ4/view?usp=sharing)
+
+</div>
+
+---
+
 > **Explore the Earth's climate past — from 1970 — on an interactive 3D globe and 2D map powered by CesiumJS, WebGL, and CMIP6 climate science.**
 
 ![Precipitation predictions example](data/images/precipitation_predications_example.png)
