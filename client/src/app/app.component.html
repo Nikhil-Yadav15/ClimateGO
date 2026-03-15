@@ -1,0 +1,108 @@
+<!-- ── Navbar ─────────────────────────────────────────────────── -->
+<nav class="app-nav">
+  <div class="nav-inner">
+
+    <!-- Brand -->
+    <a routerLink="/" class="nav-brand">{{ title }}</a>
+
+    <!-- Desktop: scrollable nav links -->
+    <div class="nav-links" *ngIf="!isMobile">
+      <a class="nav-link" routerLink="/"
+         routerLinkActive="nav-link--active"
+         [routerLinkActiveOptions]="{exact: true}">Map</a>
+      <a class="nav-link" routerLink="/globe"
+         routerLinkActive="nav-link--active">Globe</a>
+      <a class="nav-link" routerLink="/compare"
+         routerLinkActive="nav-link--active">Compare</a>
+      <a class="nav-link" routerLink="/seasons"
+         routerLinkActive="nav-link--active">Seasons</a>
+      <a class="nav-link" routerLink="/climate-scenarios"
+         routerLinkActive="nav-link--active">Scenarios</a>
+      <a class="nav-link" routerLink="/stories"
+         routerLinkActive="nav-link--active">Stories</a>
+      <span class="nav-sep"></span>
+      <a class="nav-link nav-link--tool" routerLink="/upload"
+         routerLinkActive="nav-link--active">
+        <mat-icon class="nav-icon-xs">cloud_upload</mat-icon>Upload
+      </a>
+      <a class="nav-link nav-link--tool" routerLink="/compare-nc"
+         routerLinkActive="nav-link--active">
+        <mat-icon class="nav-icon-xs">compare_arrows</mat-icon>Compare&nbsp;NC
+      </a>
+    </div>
+
+    <span class="nav-spacer"></span>
+
+    <!-- Desktop: right-side actions -->
+    <div class="nav-right" *ngIf="!isMobile">
+      <button class="nav-icon-btn"
+              [matMenuTriggerFor]="settingsMenu"
+              aria-label="Open settings">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+
+    <!-- Mobile: hamburger -->
+    <button *ngIf="isMobile"
+            class="nav-icon-btn"
+            (click)="mobileMenuOpen = !mobileMenuOpen"
+            [attr.aria-label]="mobileMenuOpen ? 'Close menu' : 'Open menu'">
+      <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-drawer" *ngIf="isMobile && mobileMenuOpen">
+  <a class="mobile-nav-link" routerLink="/"
+     routerLinkActive="mobile-nav-link--active"
+     [routerLinkActiveOptions]="{exact: true}"
+     (click)="mobileMenuOpen = false">Map</a>
+  <a class="mobile-nav-link" routerLink="/globe"
+     routerLinkActive="mobile-nav-link--active"
+     (click)="mobileMenuOpen = false">Globe</a>
+  <a class="mobile-nav-link" routerLink="/compare"
+     routerLinkActive="mobile-nav-link--active"
+     (click)="mobileMenuOpen = false">Compare</a>
+  <a class="mobile-nav-link" routerLink="/seasons"
+     routerLinkActive="mobile-nav-link--active"
+     (click)="mobileMenuOpen = false">Seasons</a>
+  <a class="mobile-nav-link" routerLink="/climate-scenarios"
+     routerLinkActive="mobile-nav-link--active"
+     (click)="mobileMenuOpen = false">Climate Scenarios</a>
+  <a class="mobile-nav-link" routerLink="/stories"
+     routerLinkActive="mobile-nav-link--active"
+     (click)="mobileMenuOpen = false">Stories</a>
+  <div class="mobile-sep"></div>
+  <a class="mobile-nav-link" routerLink="/upload"
+     routerLinkActive="mobile-nav-link--active"
+     (click)="mobileMenuOpen = false">Upload</a>
+  <a class="mobile-nav-link" routerLink="/compare-nc"
+     routerLinkActive="mobile-nav-link--active"
+     (click)="mobileMenuOpen = false">Compare NC</a>
+  <div class="mobile-actions">
+    <button class="nav-icon-btn" [matMenuTriggerFor]="settingsMenu" aria-label="Settings">
+      <mat-icon>settings</mat-icon>
+    </button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<!-- ── Settings menu ─────────────────────────────────────────── -->
+<mat-menu #settingsMenu="matMenu">
+  <div class="settings-panel"
+       (click)="$event.stopPropagation()"
+       (keydown)="$event.stopPropagation()"
+       tabindex="0">
+    <p class="settings-label">Temperature Unit</p>
+    <app-temperature-unit-selector></app-temperature-unit-selector>
+    <p class="settings-label">Precipitation Unit</p>
+    <app-precipitation-unit-selector></app-precipitation-unit-selector>
+    <p class="settings-label">Theme</p>
+    <button class="settings-theme-btn" (click)="themeService.toggle()">
+      <mat-icon>{{ themeService.theme() === 'light' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      {{ themeService.theme() === 'light' ? 'Switch to Light' : 'Switch to Dark' }}
+    </button></div>
+</mat-menu>

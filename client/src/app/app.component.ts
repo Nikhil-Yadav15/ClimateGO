@@ -1,0 +1,56 @@
+import { Component, OnInit, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { DomSanitizer } from '@angular/platform-browser';
+
+import { TemperatureUnitSelectorComponent } from './core/temperature-unit-selector.component';
+import { PrecipitationUnitSelectorComponent } from './core/precipitation-unit-selector.component';
+import { ThemeService } from './core/theme.service';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    MatIconModule,
+    MatMenuModule,
+    TemperatureUnitSelectorComponent,
+    PrecipitationUnitSelectorComponent,
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+})
+export class AppComponent implements OnInit {
+  readonly title: string = 'ClimateGO';
+  isMobile = false;
+  mobileMenuOpen = false;
+
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer,
+    public themeService: ThemeService,
+  ) {
+    this.matIconRegistry.addSvgIcon(
+      'github',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/github.svg'),
+    );
+  }
+
+  ngOnInit(): void {
+    this.checkMobile();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    this.checkMobile();
+  }
+
+  private checkMobile(): void {
+    this.isMobile = window.innerWidth <= 768;
+  }
+}

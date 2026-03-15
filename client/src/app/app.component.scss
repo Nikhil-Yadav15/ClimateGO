@@ -1,0 +1,249 @@
+@import "../styles/variables";
+
+// ── Nav shell ──────────────────────────────────────────────────
+.app-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: $navbar-height;
+  background: var(--bg-overlay);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+// ── Nav inner container ────────────────────────────────────────
+.nav-inner {
+  height: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+// ── Brand ──────────────────────────────────────────────────────
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+}
+
+// ── Desktop nav links strip ────────────────────────────────────
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// ── Single nav link ────────────────────────────────────────────
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s, background-color 0.15s;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--primary);
+    background-color: var(--primary-active);
+  }
+
+  &.nav-link--active {
+    color: var(--primary);
+    background-color: var(--primary-active);
+    font-weight: 600;
+  }
+}
+
+.nav-link--tool {
+  gap: 3px;
+}
+
+// ── Small icon inside nav link ─────────────────────────────────
+.nav-icon-xs {
+  font-size: 14px !important;
+  width: 14px !important;
+  height: 14px !important;
+  line-height: 14px !important;
+  flex-shrink: 0;
+}
+
+// ── Vertical separator between primary & tool links ────────────
+.nav-sep {
+  display: inline-block;
+  width: 1px;
+  height: 18px;
+  background: var(--border-color);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+// ── Flexible spacer ───────────────────────────────────────────
+.nav-spacer {
+  flex: 0 0 auto;
+  min-width: 0.25rem;
+}
+
+// ── Right-side group ──────────────────────────────────────────
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+// ── Icon-only button / link ────────────────────────────────────
+.nav-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  color: var(--icon-muted);
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: color 0.15s, background-color 0.15s;
+  padding: 0;
+
+  &:hover {
+    color: var(--primary);
+    background-color: var(--primary-active);
+  }
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+  }
+}
+
+.nav-gh-icon {
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 18px !important;
+}
+
+// ── Mobile drawer ──────────────────────────────────────────────
+.mobile-drawer {
+  position: sticky;
+  top: $navbar-height;
+  z-index: 99;
+  background: var(--bg-overlay-strong);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s, background-color 0.15s;
+
+  &:hover {
+    color: var(--primary);
+    background-color: var(--primary-active);
+  }
+
+  &.mobile-nav-link--active {
+    color: var(--primary);
+    background-color: var(--primary-active);
+    font-weight: 600;
+  }
+}
+
+.mobile-sep {
+  height: 1px;
+  background: var(--border-color);
+  margin: 4px 0;
+}
+
+.mobile-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px 12px;
+}
+
+// ── Settings panel (inside mat-menu) ───────────────────────────
+.settings-panel {
+  padding: 1rem;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  outline: none;
+}
+
+.settings-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0.25rem 0 0;
+}
+
+.settings-theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  align-self: flex-start;
+
+  &:hover {
+    background: var(--primary-active);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
