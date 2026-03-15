@@ -4,7 +4,7 @@
 
 ## 🎬 Live Demo
 
-### [![▶ WATCH DEMO VIDEO](https://img.shields.io/badge/▶%20WATCH%20DEMO%20VIDEO-Click%20Here-FF0000?style=for-the-badge&logo=googledrive&logoColor=white&labelColor=222222)](https://drive.google.com/file/d/1HSoxViF_RDziUdfWm8Z8hTTfj4e8DTJ4/view?usp=sharing)
+### [![▶ WATCH DEMO VIDEO](https://img.shields.io/badge/▶%20WATCH%20DEMO%20VIDEO-Click%20Here-FF0000?style=for-the-badge&logo=googledrive&logoColor=white&labelColor=222222)](https://youtu.be/BNppH4IibMQ)
 
 </div>
 
