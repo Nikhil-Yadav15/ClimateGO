@@ -95,6 +95,27 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ]
+            },
+            "render": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "4MB",
+                  "maximumError": "5MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "5kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.render.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

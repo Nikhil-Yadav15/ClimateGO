@@ -16,6 +16,7 @@ import matplotlib.colors as mcolors
 from fastapi import FastAPI, HTTPException, Request, UploadFile, File, Form
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from citipy import citipy
 import pycountry
@@ -33,8 +34,22 @@ from .cache import GeoGridCache
 
 app = FastAPI()
 
+allowed_origins = os.environ.get("CORS_ORIGINS", "*").split(",")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 api = FastAPI()
 app.mount("/v1", api)
+
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
 
 climate_maps = [ClimateMap.create(maps_config) for maps_config in settings.DATA_SETS_API]
 
