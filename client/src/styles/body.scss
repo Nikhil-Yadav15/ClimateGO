@@ -1,0 +1,11 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans, 'Inter', 'Helvetica Neue', sans-serif);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+}
