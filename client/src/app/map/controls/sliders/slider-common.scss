@@ -1,0 +1,120 @@
+@import "../../../../styles/variables";
+
+// ── Host ──────────────────────────────────────────────────────
+:host {
+  display: block;
+  height: 72px;
+  padding: 2px 0 0;
+}
+
+// ── Angular Material MDC slider overrides ─────────────────────
+::ng-deep .mat-mdc-slider {
+  width: 100%;
+
+  // Active (filled) track
+  .mdc-slider__track--active_fill {
+    border-color: var(--primary) !important;
+  }
+
+  // Inactive track
+  .mdc-slider__track--inactive {
+    background-color: var(--border-color) !important;
+    opacity: 1 !important;
+  }
+
+  // Thumb knob
+  .mdc-slider__thumb-knob {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 1px 4px rgba(79, 70, 229, 0.35) !important;
+    width: 16px !important;
+    height: 16px !important;
+    border-width: 2px !important;
+  }
+
+  // Focus/hover ripple
+  .mdc-slider__thumb--focused .mdc-slider__thumb-knob,
+  .mat-mdc-slider:not(.mdc-slider--disabled) .mdc-slider__thumb:hover .mdc-slider__thumb-knob {
+    box-shadow: 0 0 0 8px rgba(79, 70, 229, 0.1) !important;
+  }
+
+  // Tick marks
+  .mdc-slider__tick-mark--active {
+    background-color: rgba(255, 255, 255, 0.55) !important;
+  }
+
+  .mdc-slider__tick-mark--inactive {
+    background-color: rgba(79, 70, 229, 0.22) !important;
+  }
+
+  // Value bubble / tooltip
+  .mdc-slider__value-indicator {
+    background-color: var(--primary) !important;
+    border-radius: 6px !important;
+    padding: 2px 8px !important;
+  }
+
+  .mdc-slider__value-indicator::before {
+    border-top-color: var(--primary) !important;
+  }
+
+  .mdc-slider__value-indicator-text {
+    color: #ffffff !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  // Disabled state
+  &.mdc-slider--disabled {
+    .mdc-slider__track--active_fill {
+      border-color: var(--text-muted) !important;
+    }
+    .mdc-slider__thumb-knob {
+      background-color: var(--text-muted) !important;
+      border-color: var(--text-muted) !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+// Slider spans full width — labels align via flex space-between
+mat-slider {
+  margin-left: 0;
+  margin-right: 0;
+  display: block;
+  width: 100%;
+  padding: 0 !important;
+}
+
+// Month slider: half-step inset so Jan/Dec labels center under the thumb
+:host(.month-slider) mat-slider {
+  margin-left: calc(100% / 24);
+  margin-right: calc(100% / 24);
+  width: calc(100% - 2 * (100% / 24));
+}
+
+// ── Labels row below slider ───────────────────────────────────
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px 0 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.6875rem; // 11px
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-secondary);
+
+  span {
+    width: 0;
+    flex-grow: 1;
+    text-align: center;
+    line-height: 1;
+  }
+}
+
+// Hide in mobile sidebar (tune menu)
+:host-context(.sidebar-content) {
+  display: none !important;
+}

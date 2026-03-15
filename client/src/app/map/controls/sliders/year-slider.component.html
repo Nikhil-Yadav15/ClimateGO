@@ -1,0 +1,27 @@
+<mat-slider
+  showTickMarks
+  [min]="1"
+  [max]="years.length || 1"
+  step="1"
+  [displayWith]="displayWith"
+  [disabled]="disabled"
+>
+  <input
+    matSliderThumb
+    [value]="sliderValue"
+    (input)="onInput($any($event).target.value)"
+    (change)="onInput($any($event).target.value)"
+  />
+</mat-slider>
+
+<div class="year-labels">
+  <span
+    *ngFor="let year of years; let i = index"
+    class="year-label"
+    [class.historical]="isHistoricalYearRange(year)"
+    [class.prediction]="!isHistoricalYearRange(year)"
+    [class.first]="i === 0"
+    [class.last]="i === years.length - 1"
+    [style.left.%]="years.length > 1 ? (i * 100) / (years.length - 1) : 50"
+  >{{ getDisplayLabel(year) }}</span>
+</div>
